@@ -1,9 +1,10 @@
-console.log('something');
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { render } from 'react-dom';
+import './style.css';
 
-render(<>Hello</>, document.getElementById('app'));
+render(<><div className='text text-lg bg-red-600'>Hello</div></>, document.getElementById('app'));
 
 // const container = document.getElementById('app');
 // const root = createRoot(container);
