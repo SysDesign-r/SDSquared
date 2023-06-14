@@ -39,12 +39,12 @@ module.exports = {
     ],
   },
   devServer: {
-    hot: true,
-    compress: true,
-    port: 8080,
-    // proxy: {
-    //   '/**': 'http://localhost:3000',
-    // },
+    // hot: true,
+    // compress: true,
+    port: 3030,
+    proxy: {
+      '/**': 'http://localhost:4040',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

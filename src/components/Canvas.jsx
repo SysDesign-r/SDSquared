@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box } from './Box';
 import DraggableDiv from './DraggableDiv';
-
 export const Canvas = () => {
   let [divs, setDivs] = useState([]); // possible redux?
   function createDiv() {
@@ -11,8 +10,6 @@ export const Canvas = () => {
     console.log(divs);
   }
 
-  // make elements draggable
-  
   return (
     <div>
       <button
