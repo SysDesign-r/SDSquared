@@ -1,13 +1,21 @@
-const app = require('express')();
-const socket = require('socket.io');
-const server = app.listen(port);
-const port = 8080;
-const io = socket(server);
+const express = require('express');
+const app = express();
+const httpServer = require('http').createServer(app);
+const io = require('socket.io')(httpServer);
+const port = process.env.PORT || 3000;
 
-io.on('connection', onConnection);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-function onConnection(socket){
-  socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
-}
 
-server.listen(port, () => console.log(`server is running on port ${port}`));
+io.on('connection', socket => {
+  socket.emit('sayHi','Hello');
+
+  socket.on("helloFromClient", (arg) => {
+    console.log(arg); // 
+  });
+})
+
+
+
+httpServer.listen(port, () => console.log('listening on port ' + port));
