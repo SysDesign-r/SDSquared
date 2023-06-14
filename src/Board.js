@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import io from 'socket.io-client';
-import './styles/board.css';
 import './board.css';
 
 const Board = () => {

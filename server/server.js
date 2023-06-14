@@ -1,8 +1,11 @@
-const app = require('express')();
+const express = require('express')
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const port =8080;
 const socket = require('socket.io');
-const server = app.listen(port);
-const port = 8080;
 const io = socket(server);
+app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io/client-dist'));
 
 io.on('connection', onConnection);
 

@@ -5,10 +5,10 @@ import { render } from 'react-dom';
 import './style.css';
 import Board from './Board.js';
 
-render(
-  <Board />, 
-document.getElementById('app')
-);
+const rootElement = document.getElementById('app');
+
+const root = createRoot(rootElement);
+root.render(<Board />);
 
 // const container = document.getElementById('app');
 // const root = createRoot(container);
