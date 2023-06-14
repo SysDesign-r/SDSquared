@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 
-const DraggableDiv = () => {
-
-  const [pos1, setPos1] = useState(0);
-  const [pos2, setPos2] = useState(0);
-  const [pos3, setPos3] = useState(0);
-  const [pos4, setPos4] = useState(0);
+const DraggableDiv = (props) => {
+  console.log("this is from drag div:", props.tech)
+  let name = props.tech
+  const [pos1, setPos1] = useState(50);
+  const [pos2, setPos2] = useState(50);
+  // const [pos3, setPos3] = useState(0);
+  // const [pos4, setPos4] = useState(0);
+  const draggableID = String(Date.now())
+  console.log(draggableID)
 
   const dragMouseDown = (e) => {
     e = e || window.event;
     e.preventDefault();
-    console.log("client x: ", e.clientX)
-    console.log("client y: ", e.clientY)
-    console.log('POS1: ', pos1)
-    console.log('POS2: ', pos2)
-    console.log('POS3: ', pos3)
-    console.log('POS4: ', pos4)
-    setPos3(e.clientX);
-    setPos4(e.clientY);
+    // console.log("client x: ", e.clientX)
+    // console.log("client y: ", e.clientY)
+    // console.log('POS1: ', pos1)
+    // console.log('POS2: ', pos2)
+
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
   };
@@ -25,20 +25,21 @@ const DraggableDiv = () => {
   const elementDrag = (e) => {
     
     e.preventDefault();
-    setPos1(pos3 + e.clientX);
-    setPos2(pos4 + e.clientY);
-    setPos3(e.clientX);
-    setPos4(e.clientY);
-    const elmnt = document.getElementById('mydiv');
-    elmnt.style.top = `${elmnt.offsetTop - pos2}px`;
-    elmnt.style.left = `${elmnt.offsetLeft - pos1}px`;
-    console.log("==========================")
-    console.log("client x: ", e.clientX)
-    console.log("client y: ", e.clientY)
-    console.log('POS1: ', pos1)
-    console.log('POS2: ', pos2)
-    console.log('POS3: ', pos3)
-    console.log('POS4: ', pos4)
+    setPos1(e.clientX); // could add offsets to keep the element under the mouse click
+    setPos2(e.clientY);
+    // setPos1(pos3 + e.clientX);
+    // setPos2(pos4 + e.clientY);
+    // setPos3(e.clientX);
+    // setPos4(e.clientY);
+    const elmnt = document.getElementById(draggableID);
+
+  
+    // console.log("==========================")
+    // console.log("client x: ", e.clientX)
+    // console.log("client y: ", e.clientY)
+    // console.log('POS1: ', pos1)
+    // console.log('POS2: ', pos2)
+
   };
 
   const closeDragElement = (e) => {
@@ -49,14 +50,12 @@ const DraggableDiv = () => {
     console.log("client y: ", e.clientY)
     console.log('POS1: ', pos1)
     console.log('POS2: ', pos2)
-    console.log('POS3: ', pos3)
-    console.log('POS4: ', pos4)
   };
 
   return (
     <>
       <div
-        id="mydiv"
+        id={draggableID}
         style={{
           position: 'absolute',
           zIndex: 9,
@@ -79,7 +78,7 @@ const DraggableDiv = () => {
           }}
           onMouseDown={dragMouseDown}
         >
-        <p>Database</p>
+        <p>{name}</p>
           
         </div>
         
