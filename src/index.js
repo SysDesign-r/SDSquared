@@ -8,8 +8,4 @@ import Board from './Board.js';
 const rootElement = document.getElementById('app');
 
 const root = createRoot(rootElement);
-root.render(<Board />);
-
-// const container = document.getElementById('app');
-// const root = createRoot(container);
-// root.render(<>Hello</>);
+root.render(<Board />)
