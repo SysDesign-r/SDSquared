@@ -2,11 +2,11 @@
   "name": "sdsquared",
   "version": "1.0.0",
   "description": "System Design, Simplified",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
-    "dev": "webpack serve"
+    "dev": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
