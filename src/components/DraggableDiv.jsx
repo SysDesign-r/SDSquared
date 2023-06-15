@@ -45,11 +45,11 @@ const DraggableDiv = (props) => {
   const closeDragElement = (e) => {
     document.onmouseup = null;
     document.onmousemove = null;
-    console.log("CLOSES")
-    console.log("client x: ", e.clientX)
-    console.log("client y: ", e.clientY)
-    console.log('POS1: ', pos1)
-    console.log('POS2: ', pos2)
+    // console.log("CLOSES")
+    // console.log("client x: ", e.clientX)
+    // console.log("client y: ", e.clientY)
+    // console.log('POS1: ', pos1)
+    // console.log('POS2: ', pos2)
   };
 
   return (

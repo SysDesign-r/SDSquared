@@ -14,8 +14,9 @@ export const Canvas = () => {
     setInputText(e.target.value);
     console.log("this is inputText ::", inputText)
   };
-  function createDiv() {
+  function createDiv(e) {
     // divs.push(<Box />);
+    e.preventDefault()
     console.log("Final state: ", inputText)
     setDivs([...divs, <DraggableDiv tech={inputText}/>]);
     console.log(divs);
@@ -28,12 +29,19 @@ export const Canvas = () => {
           {divs}
       </div>
       <div>
-        <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' type="text" onChange={handleChange} value={inputText} placeholder='Enter Tech' />
+       
+        <form  onSubmit={(e) => createDiv(e)}>
+          <input
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            type="text"
+            onChange={handleChange}
+            value={inputText}
+            placeholder='Enter Tech' />
+        </form>
+  
         <button
           className='text text-lg bg-red-600'
-          onClick={(e) => {
-            createDiv();
-          }}
+          onClick={(e) => createDiv(e)}
           type='submit'
         >
           GET
