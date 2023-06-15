@@ -4,8 +4,8 @@ const httpServer = require('http').createServer(app);
 const io = require('socket.io')(httpServer);
 const port = 4040;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 io.on('connection', (socket) => {
   console.log('A client connected');
