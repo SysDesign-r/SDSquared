@@ -1,22 +1,29 @@
-const express = require ('express')
+const express = require('express');
 const app = express();
-const socket = require('socket.io');
-const path = require('path');
+const httpServer = require('http').createServer(app);
+const io = require('socket.io')(httpServer);
+const port = 4040;
 
-const port = 3000;
-const controller = require('./controller');
 app.use(express.static(path.join(__dirname, '../src')));
+
 app.use(express.json());
-// const server = app.listen(port);
+app.use(express.urlencoded({ extended: true }));
 
-// const io = socket(server);
+io.on('connection', (socket) => {
+  console.log('A client connected');
 
-// io.on('connection', onConnection);
+  socket.on('dragUpdate', (data) => {
+    console.log('Received updatePosition event:', data);
+    io.emit('dragUpdate', data);
+  });
 
-// function onConnection(socket){
-//   socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
-// }
+  socket.on('div', (data) => {
+    console.log('Received div event:', data);
+    io.emit('div', data);
+  });
 
+
+io.on('connection', onConnection);
 //get random
 app.get('/getRandom', controller.getRandom, (req, res) => {
   return res.status(200).json(res.locals.data);
@@ -51,4 +58,4 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(port, () => console.log(`server is running on port ${port}`));
+httpServer.listen(port, () => console.log('listening on port ' + port));
