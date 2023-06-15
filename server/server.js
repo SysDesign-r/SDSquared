@@ -10,19 +10,16 @@ app.use(express.urlencoded({ extended: true }));
 io.on('connection', (socket) => {
   console.log('A client connected');
 
-  socket.on('test', (data) => {
-    console.log('Received test event:', data);
-    io.emit('test', 'Server says: Test event received');
-  });
-
   socket.on('dragUpdate', (data) => {
-    console.log('Received dragUpdate event:', data);
+    console.log('Received updatePosition event:', data);
     io.emit('dragUpdate', data);
   });
 
-  socket.on('disconnect', () => {
-    console.log('A client disconnected');
+  socket.on('div', (data) => {
+    console.log('Received div event:', data);
+    io.emit('div', data);
   });
+
 });
 
 
