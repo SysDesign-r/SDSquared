@@ -2,7 +2,7 @@
   "name": "sdsquared",
   "version": "1.0.0",
   "description": "System Design, Simplified",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "dev": "webpack serve & nodemon server/server.js"
