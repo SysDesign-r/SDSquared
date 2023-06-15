@@ -1,8 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const httpServer = require('http').createServer(app);
 const io = require('socket.io')(httpServer);
 const port = 4040;
+const controller = require('./controller');
+
 
 app.use(express.static(path.join(__dirname, '../src')));
 
@@ -21,9 +24,9 @@ io.on('connection', (socket) => {
     console.log('Received div event:', data);
     io.emit('div', data);
   });
+// io.on('connection', onConnection);
+})
 
-
-io.on('connection', onConnection);
 //get random
 app.get('/getRandom', controller.getRandom, (req, res) => {
   return res.status(200).json(res.locals.data);
